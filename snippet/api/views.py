@@ -1,53 +1,56 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+
 from rest_framework import viewsets
+
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
 from django.contrib.auth.models import User
+from snippet.models import Friends, Languages, CountriesSpeakers
+from snippet.models import Pets, Customer
 
-<<<<<<< HEAD
-from snippet.models import whoever, Pets
-from .serializers import UserSerializer, whoever_serializer, pet_serializer
+from .serializers import UserSerializer, pet_serializer, customer_serializer
+from .serializers import friends_serializer, LanguagesSerializer, CountriesSerializer
 
-=======
-from snippet.models import mymodel, Customer
-from .serializers import UserSerializer, mymodel_serializer
-from .serializers import CustomerSerializer
->>>>>>> 09c12cbeb971595e7cb09aa40020a3eae11dd084
+@api_view(['GET'])
+def Pet_VS(request):
+    pets        = Pets.objects.all()
+    serializer  = pet_serializer(pets, many=True)
+    return Response(serializer)
 
-# Here, the objects from the models and the functions serializers are puted together on views
+@api_view(['GET'])
+def apiOverview(req):
+    api_urls = {
+        'List':'/task-list/',
+        'Detail View':'/task-detail/<str:pk>'
+    }
+    return Response(api_urls)
 
 class CustomerViewSet(viewsets.ViewSet):
     def list(self, request):
-        queryset = Customer.objects.all()
-        serializer = CustomerSerializer(queryset, many=True)
+        queryset    = Customer.objects.all()
+        serializer  = CustomerSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        queryset = Customer.objects.all()
-        customer = get_object_or_404(queryset, pk=pk)
-        serializer = CustomerSerializer(customer)
+        queryset    = Customer.objects.all()
+        customer    = get_object_or_404(queryset, pk=pk)
+        serializer  = CustomerSerializer(customer)
         return Response(serializer.data)
 
 class UserViewSet(viewsets.ModelViewSet):
-    
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
+    queryset            = User.objects.all().order_by('-date_joined')
+    serializer_class    = UserSerializer
 
-    # we can use the next method instead of queryset
-    # def get_queryset(self):
-        # return self.request.user.accounts.all()
+class FriendsViewSet(viewsets.ModelViewSet):
+	queryset           = Friends.objects.all()
+	serializer_class   = friends_serializer
 
+class LanguagesViewSet(viewsets.ModelViewSet):
+    queryset            =Languages.objects.all()
+    serializer_class    =LanguagesSerializer
 
-<<<<<<< HEAD
-class WhoeverViewSet(viewsets.ModelViewSet):
-	queryset = whoever.objects.all()
-	serializer_class = whoever_serializer
-
-class Pet_VS(viewsets.ModelViewSet):
-	queryset = Pets.objects.all()
-	serializer_class = pet_serializer
-=======
-class SomethingViewSet(viewsets.ModelViewSet):
-	queryset = mymodel.objects.all()
-	serializer_class = mymodel_serializer
->>>>>>> 09c12cbeb971595e7cb09aa40020a3eae11dd084
-
+class CountriesViewSet(viewsets.ModelViewSet):
+    queryset            =CountriesSpeakers.objects.all()
+    serializer_class    =CountriesSerializer

@@ -1,5 +1,6 @@
 from pathlib import Path
 from rest_framework.settings import api_settings
+import os 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -51,31 +52,30 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'apirestdj.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/dev/ref/settings/#databases
+#DATABASES = {
+#    'default': {
+#
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#
+#        'NAME': 'bcra',
+#
+#        'USER': 'postgres',
+#
+#        'PASSWORD': '69superContra',
+#
+#        'HOST': 'localhost',
+#
+#        'PORT': '6969',
+#
+#    }
+#}
 
 DATABASES = {
     'default': {
-
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
-        'NAME': 'bcra',
-
-        'USER': 'postgres',
-
-        'PASSWORD': '69superContra',
-
-        'HOST': 'localhost',
-
-        'PORT': '6969',
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -92,10 +92,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/dev/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -105,10 +101,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
 
