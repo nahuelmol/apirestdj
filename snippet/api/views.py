@@ -2,9 +2,11 @@ from django.shortcuts import render
 from django.http import JsonResponse
 
 from rest_framework import viewsets
+from rest_framework import generics
 
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, schema
 from rest_framework.response import Response
+from rest_framework.schemas import AutoSchema
 
 from django.contrib.auth.models import User
 from snippet.models import Friends, Languages, CountriesSpeakers
@@ -13,26 +15,45 @@ from snippet.models import Pets, Customer
 from .serializers import UserSerializer, pet_serializer, customer_serializer
 from .serializers import friends_serializer, LanguagesSerializer, CountriesSerializer
 
-@api_view(['GET'])
-def Pet_VS(request):
-    pets        = Pets.objects.all()
-    serializer  = pet_serializer(pets, many=True)
-    return Response(serializer)
+class CustomAutoSchema(AutoSchema):
+    def get_link(self, path, method, base_url):
+        print(method)
+        print(base_url)
+
 
 @api_view(['GET'])
-def apiOverview(req):
-    api_urls = {
-        'List':'/task-list/',
-        'Detail View':'/task-detail/<str:pk>'
-    }
+@schema(CustomAutoSchema())
+def example_view(request):
+    return Response({"message": "Hello for today! See you tomorrow!"})
+
+@api_view(['GET','POST'])
+def Pet_VS(request):
+
+    if request.method == 'GET':
+        pets        = Pets.objects.all()
+        serializer  = pet_serializer(pets, many=True)
+        queryset    = serializer.data
+        return Response(queryset)
+
+    if request.method == 'POST':
+        content     = {"message": "Got some data!", "data": request.data}
+        return Response(content)
+
+
+@api_view(['GET'])
+def apiOverview(request):
+    api_urls = {"message": "Hello, world!"}
     return Response(api_urls)
 
 class CustomerViewSet(viewsets.ViewSet):
+
+    @staticmethod
     def list(self, request):
         queryset    = Customer.objects.all()
         serializer  = CustomerSerializer(queryset, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data)    
 
+    @staticmethod
     def retrieve(self, request, pk=None):
         queryset    = Customer.objects.all()
         customer    = get_object_or_404(queryset, pk=pk)
