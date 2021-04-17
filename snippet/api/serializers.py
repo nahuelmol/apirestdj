@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from snippet.models import Friends, Languages, CountriesSpeakers
-from snippet.models import Customer, Pets
+from snippet.models import Pets, Customers
 
 class UserSerializer(serializers.ModelSerializer):
     
@@ -22,7 +22,7 @@ class pet_serializer(serializers.ModelSerializer):
 
 class customer_serializer(serializers.ModelSerializer):
     class Meta:
-        model   = Customer
+        model   = Customers
         fields  = '__all__'
 
 

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
 from rest_framework import viewsets
@@ -10,7 +11,7 @@ from rest_framework.schemas import AutoSchema
 
 from django.contrib.auth.models import User
 from snippet.models import Friends, Languages, CountriesSpeakers
-from snippet.models import Pets, Customer
+from snippet.models import Pets, Customers
 
 from .serializers import UserSerializer, pet_serializer, customer_serializer
 from .serializers import friends_serializer, LanguagesSerializer, CountriesSerializer
@@ -46,18 +47,18 @@ def apiOverview(request):
     return Response(api_urls)
 
 class CustomerViewSet(viewsets.ViewSet):
+    
+    @staticmethod
+    def list(self):
+        queryset        = Customers.objects.all()
+        serializer      = customer_serializer(queryset, many=True)
+        return Response(serializer.data) 
 
     @staticmethod
-    def list(self, request):
-        queryset    = Customer.objects.all()
-        serializer  = CustomerSerializer(queryset, many=True)
-        return Response(serializer.data)    
-
-    @staticmethod
-    def retrieve(self, request, pk=None):
-        queryset    = Customer.objects.all()
+    def retrieve(self,pk=None):
+        queryset    = Customers.objects.all()
         customer    = get_object_or_404(queryset, pk=pk)
-        serializer  = CustomerSerializer(customer)
+        serializer  = customer_serializer(customer)
         return Response(serializer.data)
 
 class UserViewSet(viewsets.ModelViewSet):

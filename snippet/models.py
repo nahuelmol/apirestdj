@@ -24,7 +24,7 @@ class Pets(models.Model):
 	years_old 	= models.IntegerField()
 	hairColor 	= models.CharField(max_length=10)
 
-class Customer(models.Model):
+class Customers(models.Model):
     name 			= models.CharField(max_length = 10)
     nation 			= models.CharField(max_length = 10)
     total_trans 	= models.IntegerField()

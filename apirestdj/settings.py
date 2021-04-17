@@ -6,7 +6,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 't!!weed#u7m#m2=6ext_%gyf_0@*w=v)kn$o^i8vnspi)u+5y('
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -34,17 +33,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'apirestdj.urls'
 
-TEMPLATES = [
-    {
+TEMPLATES = [{
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        'OPTIONS': {'context_processors': [ 'django.template.context_processors.debug',
+                                            'django.template.context_processors.request',
+                                            'django.contrib.auth.context_processors.auth',
+                                            'django.contrib.messages.context_processors.messages',
             ],
         },
     },
@@ -52,44 +48,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'apirestdj.wsgi.application'
 
-#DATABASES = {
-#    'default': {
-#
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#
-#        'NAME': 'bcra',
-#
-#        'USER': 'postgres',
-#
-#        'PASSWORD': '69superContra',
-#
-#        'HOST': 'localhost',
-#
-#        'PORT': '6969',
-#
-#    }
-#}
+#DATABASES = {'default': {  'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#                           'NAME': 'bcra',
+#                           'USER': 'postgres',
+#                           'PASSWORD': '69superContra',
+#                           'HOST': 'localhost',
+#                           'PORT': '6969'} }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASES = {'default': {   'ENGINE': 'django.db.backends.sqlite3',
+                            'NAME': BASE_DIR / 'db.sqlite3'}}
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'}
 ]
 
 LANGUAGE_CODE = 'en-us'
@@ -114,4 +87,13 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
     ],
+}
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
 }
