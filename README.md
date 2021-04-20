@@ -1,3 +1,4 @@
+![](medium.png)
 # apirest-django
 ## here im using the django rest framework to:
 * create a simple apirest
