@@ -1,11 +1,17 @@
 ![](medium.png)
-# apirest-django
-## here im using the django rest framework to:
-* create a simple apirest
+## apirest-django
+this project comes with the idea to analize performance of differents technologies and pick up profitable points and optimiing the loose resources
+
+## objectives
+* create an apirest
+* built a simulator of bank transactions, between members of a client table
+
+## specific purposes 
 * analize the performance of **memcached** as the caching system
-* create a robust and flexible database, exposing the **ACID** relyability, implementing **database triggers**, **database shard architecture** if it's necesary
+* maintain a robust and flexible database, exposing the **ACID** relyability, implementing **database triggers**, **database shard architecture** if it's necesary
+* try out the django's **ORM** 
 
 ## built with
 * memcached tool as caching system
-* postgresql as database
+* postgresql as the database
 * django & django rest framework
