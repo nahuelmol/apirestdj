@@ -8,15 +8,11 @@ from .views import FriendsViewSet, LanguagesViewSet, CountriesViewSet
 app_name = 'apirest'
 
 router = routers.DefaultRouter()
-#router = routers.SimpleRouter()
 
 router.register(r'user_data', 		UserViewSet)
 router.register(r'friends_data', 	FriendsViewSet)
 router.register(r'languages', 		LanguagesViewSet)
 router.register(r'countries', 		CountriesViewSet)
-
-#router.register(r'thats_pets_data', Pet_VS, basename='pets')
-#router.register(r'overview',apiOverview, basename='apiOverview')
-router.register(r'customer',CustomerViewSet,basename='costumer')
+router.register(r'customer',		CustomerViewSet,basename='costumer')
 
 urlpatterns = router.urls

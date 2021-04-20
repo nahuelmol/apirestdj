@@ -21,11 +21,11 @@ class CustomAutoSchema(AutoSchema):
         print(method)
         print(base_url)
 
-
 @api_view(['GET'])
 @schema(CustomAutoSchema())
 def example_view(request):
-    return Response({"message": "Hello for today! See you tomorrow!"})
+    message_example = {"message": "Hello for today! See you tomorrow!"}
+    return Response(message_example)
 
 @api_view(['GET','POST'])
 def Pet_VS(request):
@@ -46,6 +46,9 @@ def apiOverview(request):
     api_urls = {"message": "Hello, world!"}
     return Response(api_urls)
 
+#####################CUSTOM_VIEWSETS#############################
+
+
 class CustomerViewSet(viewsets.ViewSet):
     
     @staticmethod
@@ -60,6 +63,8 @@ class CustomerViewSet(viewsets.ViewSet):
         customer    = get_object_or_404(queryset, pk=pk)
         serializer  = customer_serializer(customer)
         return Response(serializer.data)
+
+###############GENERIC_VIEWSETS#############################
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset            = User.objects.all().order_by('-date_joined')
