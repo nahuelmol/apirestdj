@@ -6,9 +6,8 @@ from transactions.models import Transactions, Client
 class Monitor(View):
 
 	def get(self,request):
-		clients = Client.objects.all()
-		context = {	'example':clients }
-		print(context)
+		clients 	= Client.objects.all()
+		context 	= {	'example':clients}
 		return render(request,'transactions/monitor.html',context)
 
 	def post(self,request,pk=None):
