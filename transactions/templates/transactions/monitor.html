@@ -5,6 +5,18 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 	<script type="text/javascript" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+	<style>
+			li {
+				padding-top:4px;
+                padding-bottom: 4px;
+			}
+            div.gfg {
+                width: 400px;
+                height: 250px;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+    </style>
 </head>
 <body>
 	<div class="content">
@@ -15,39 +27,48 @@
 			<div class="col text-center">
 				<h3>Status of clients</h3>
 			</div>
-			<div class="col text-center">
+			<div class="col text-center " >
 				<h3>Choose a client</h3>
 				{% block content %}
-				<ul class="pagination align-top">
+				<div class="gfg">
+					<ul class="pagination pagination-sm" style="display: inline-block;vertical-align:top">
 					{% if example %}
 						{% for each in example %}
 							<li class="page-item ">
-								<button class="btn" onclick="send_id({{each.id}})">{{each.name}}</button>
-								<p id="id_selected">{{each.id}}</p>
+								<button class="btn" onclick='send_id("{{each.fond}}","{{each.name}}","{{each.valoration}}","{{each.crypto}}","{{each.email}}","{{each.coin}}");'>
+									<p>{{each.id}}: {{ each.name }}</p>
+									<p class="btn-outline-info">Valoration: {{each.valoration}}</p>
+								</button>
 							</li>
 						{% endfor %}
 					{% endif %}
-				</ul>
+					</ul>
+				</div>
+				{% endblock %}
 			</div>
 			<div class="col text-center">
 				<h3>Detail of each</h3>
 				<div id="details">
-					
+					<h5>Name: </h5><div id="name"></div>
+					<h5>Fonds: </h5><div id="fond"></div>
+					<h5>Valoration: </h5><div id="val"></div>
+					<h5>Crypto: </h5><div id="crypto"></div>
+					<h5>Email: </h5><div id="email"></div>
+					<h5>Coin: </h5><div id="coin"></div>
 				</div>
-				{% endblock %}
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
+
 		
-		function send_id(id){
-			console.log('got it ' + id);
-			var num 			= id
-			var num_string 		= num.toString()
-			var sentence 		= "{{ example."+ num_string
-			var end_sentence 	= sentence+" }}"
-			console.log(end_sentence)
-			var a 	= document.getElementById('details').innerHTML = end_sentence;
+		function send_id(fond,name,val,crypto,email,coin){
+			document.getElementById('name').innerHTML 	= name;
+			document.getElementById('fond').innerHTML 	= fond;
+			document.getElementById('val').innerHTML 	= val;
+			document.getElementById('crypto').innerHTML	= crypto;
+			document.getElementById('email').innerHTML 	= email;
+			document.getElementById('coin').innerHTML	= coin;
 		}
 	</script>
 </body>
