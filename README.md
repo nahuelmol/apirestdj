@@ -15,3 +15,6 @@ this project comes with the idea to analize performance of differents technologi
 * memcached tool as caching system
 * postgresql as the database
 * django & django rest framework
+
+## to consider
+The database teeated has no relation with reality, beiang exposed as an example
