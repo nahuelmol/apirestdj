@@ -1,4 +1,4 @@
-![](medium.png)
+![](NewIcon.png)
 ## apirest-django
 this project comes with the idea to analize performance of differents technologies and pick up profitable points and optimiing the loose resources
 
