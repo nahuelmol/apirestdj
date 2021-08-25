@@ -1,4 +1,9 @@
 ![](IMG-20210511-WA0008.jpg)
+<div>
+  <img src="https://img.shields.io/github/last-commit/nahuelmol/apirestdj-sqlite"/>
+  <img src="https://img.shields.io/github/languages/code-size/nahuelmol/apirestdj-sqlite"/>
+  <img src="https://img.shields.io/github/languages/top/nahuelmol/apirestdj-sqlite"/>
+</div>
 ## apirest-django
 this project comes with the idea to analize performance of differents technologies and pick up profitable points and optimiing the loose resources
 
