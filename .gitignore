@@ -1,0 +1,4 @@
+*.sqlite
+/accounts/migrations
+/snippet/migrations
+/transactions/migrations

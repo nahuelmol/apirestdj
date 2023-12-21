@@ -48,7 +48,6 @@ def apiOverview(request):
 
 #####################CUSTOM_VIEWSETS#############################
 
-
 class CustomerViewSet(viewsets.ViewSet):
     
     @staticmethod

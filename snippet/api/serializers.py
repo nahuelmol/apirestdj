@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from snippet.models import Friends, Languages, CountriesSpeakers
 from snippet.models import Pets, Customers
 
+
 class UserSerializer(serializers.ModelSerializer):
     
     class Meta:

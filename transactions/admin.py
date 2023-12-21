@@ -1,5 +1,5 @@
 from django.contrib import admin
-from transactions.models import Transactions, Client
+from transactions.models import Transaction, Client
 
-admin.site.register(Transactions)
+admin.site.register(Transaction)
 admin.site.register(Client)
